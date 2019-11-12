@@ -11,14 +11,14 @@ class Stack:
 
     def push(self, value):
         self.size += 1
-        self.dbly_list.add_to_tail(value)
+        self.dbly_list.add_to_head(value)
 
     def pop(self):
         if self.size == 0:
             return
         else:
             self.size -= 1
-            return self.dbly_list.remove_from_tail()
+            return self.dbly_list.remove_from_head()
 
     def len(self):
         return self.size
