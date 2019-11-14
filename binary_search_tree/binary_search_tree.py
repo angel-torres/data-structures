@@ -51,7 +51,12 @@ class BinarySearchTree:
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        cb(self.value)
+        if self.left != None:
+            self.left.for_each(cb)
+        if self.right != None:
+            self.right.for_each(cb)
+        return
 
     # DAY 2 Project -----------------------
 
@@ -87,5 +92,7 @@ bst.insert(4)
 bst.insert(10)
 bst.insert(12)
 bst.insert(9)
-
+def prnt(x):
+    print(f"Current node - {x}")
+bst.for_each(prnt)
 print(bst.get_max())
