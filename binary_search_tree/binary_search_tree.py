@@ -43,7 +43,10 @@ class BinarySearchTree:
         return False
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        if self.right == None:
+            return self.value
+        else:
+            return self.right.get_max()
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
@@ -81,15 +84,8 @@ class BinarySearchTree:
 
 bst = BinarySearchTree(8)
 bst.insert(4)
-print(bst.contains(4))
-#print(bst.left.value, "< -- Left Value")
 bst.insert(10)
-print(bst.contains(10))
-print(bst.right.value, "< -- Right Value")
 bst.insert(12)
-print(bst.right.right.value, "< -- Right Value of right node")
 bst.insert(9)
-print(bst.right.left.value, "< -- Left Value of right node")
-print(bst.contains(9))
-print(bst.contains(12))
-print(bst.contains(56))
+
+print(bst.get_max())
