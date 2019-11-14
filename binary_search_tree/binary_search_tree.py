@@ -12,21 +12,51 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
-
+        if self.value > value:
+            if self.left == None:
+                new_tree = BinarySearchTree(value)
+                self.left = new_tree
+            else:
+                self.left.insert(value)
+        if self.value < value:
+            if self.right == None:
+                new_tree = BinarySearchTree(value)
+                self.right = new_tree
+            else:
+                self.right.insert(value)
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
-
+        if self.value == target:
+            return True
+        if target < self.value and self.left != None:
+            if self.left.value == target:
+                return True
+            else:
+                return self.left.contains(target)
+        if target > self.value and self.right != None:
+            if self.right.value == target:
+                return True
+            else:
+                return self.right.contains(target)
+        
+        return False
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        if self.right == None:
+            return self.value
+        else:
+            return self.right.get_max()
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        cb(self.value)
+        if self.left != None:
+            self.left.for_each(cb)
+        if self.right != None:
+            self.right.for_each(cb)
+        return
 
     # DAY 2 Project -----------------------
 
@@ -55,3 +85,14 @@ class BinarySearchTree:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
+
+bst = BinarySearchTree(8)
+bst.insert(4)
+bst.insert(10)
+bst.insert(12)
+bst.insert(9)
+def prnt(x):
+    print(f"Current node - {x}")
+bst.for_each(prnt)
+print(bst.get_max())
