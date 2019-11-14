@@ -12,8 +12,18 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
-
+        if self.value > value:
+            if self.left == None:
+                new_tree = BinarySearchTree(value)
+                self.left = new_tree
+            else:
+                self.left.insert(value)
+        if self.value < value:
+            if self.right == None:
+                new_tree = BinarySearchTree(value)
+                self.right = new_tree
+            else:
+                self.right.insert(value)
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
@@ -55,3 +65,14 @@ class BinarySearchTree:
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
         pass
+
+
+bst = BinarySearchTree(8)
+bst.insert(4)
+print(bst.left.value, "< -- Left Value")
+bst.insert(10)
+print(bst.right.value, "< -- Right Value")
+bst.insert(12)
+print(bst.right.right.value, "< -- Right Value of right node")
+bst.insert(9)
+print(bst.right.left.value, "< -- Left Value of right node")
